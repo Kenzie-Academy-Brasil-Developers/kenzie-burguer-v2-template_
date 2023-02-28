@@ -9,9 +9,9 @@ interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegisterReturn;
 }
 
-const Input = ({ labelText, error, register }: IInputProps) => (
+const Input = ({ labelText, error, register, type }: IInputProps) => (
   <fieldset>
-    <StyledTextField label={labelText} type='text' {...register} />
+    <StyledTextField label={labelText} type={type} {...register} />
     <StyledParagraph fontColor='red'>{error}</StyledParagraph>
   </fieldset>
 );
