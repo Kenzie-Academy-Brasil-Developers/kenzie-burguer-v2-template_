@@ -22,29 +22,21 @@ export const StyledButtonCSS = css<IStyledButtonProps>`
 
   ${({ $buttonSize }) => {
     switch ($buttonSize) {
-      case 'default':
-        return css`
-          padding: 0 30px;
-          height: 60px;
-        `;
       case 'medium':
         return css`
           padding: 0 20px;
           height: 40px;
+        `;
+      default:
+        return css`
+          padding: 0 30px;
+          height: 60px;
         `;
     }
   }}
 
   ${({ theme, $buttonStyle }) => {
     switch ($buttonStyle) {
-      case 'green':
-        return css`
-          color: ${theme.colors.white};
-          background: ${theme.colors.primary};
-          &:hover {
-            opacity: 0.5;
-          }
-        `;
       case 'gray':
         return css`
           color: ${theme.colors.gray300};
@@ -52,6 +44,14 @@ export const StyledButtonCSS = css<IStyledButtonProps>`
           &:hover {
             color: ${theme.colors.gray100};
             background: ${theme.colors.gray300};
+          }
+        `;
+      default:
+        return css`
+          color: ${theme.colors.white};
+          background: ${theme.colors.primary};
+          &:hover {
+            opacity: 0.5;
           }
         `;
     }

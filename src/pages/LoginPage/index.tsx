@@ -5,6 +5,7 @@ import IllustrationBox from '../../components/IllustrationBox';
 import { StyledButtonLink } from '../../styles/button';
 import { StyledContainer, StyledGridBox } from '../../styles/grid';
 import { StyledParagraph, StyledTitle } from '../../styles/typography';
+import { FormLoginProvider } from '../../Context/FormLoginContext';
 
 const LoginPage = () => (
   <StyledLoginPage>
@@ -15,7 +16,9 @@ const LoginPage = () => (
             <StyledTitle tag='h2' $fontSize='three'>
               Login
             </StyledTitle>
-            <LoginForm />
+            <FormLoginProvider>
+              <LoginForm />
+            </FormLoginProvider>
             <StyledParagraph textAlign='center' fontColor='gray'>
               Crie sua conta para saborear muitas delícias e matar sua fome!
             </StyledParagraph>

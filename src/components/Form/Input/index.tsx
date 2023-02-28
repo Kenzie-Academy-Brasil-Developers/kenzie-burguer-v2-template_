@@ -1,11 +1,18 @@
+import React from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import { StyledTextField } from '../../../styles/form';
 import { StyledParagraph } from '../../../styles/typography';
 
-const Input = () => (
+interface IInputProps {
+  labelText: string;
+  error?: string | undefined;
+  register: UseFormRegisterReturn;
+}
+
+const Input = ({ labelText, error, register }: IInputProps) => (
   <fieldset>
-    <StyledTextField label='Teste' type='text' />
-    <StyledParagraph fontColor='red'>Erro</StyledParagraph>
+    <StyledTextField label={labelText} type='text' {...register} />
+    <StyledParagraph fontColor='red'>{error}</StyledParagraph>
   </fieldset>
 );
-
 export default Input;

@@ -21,11 +21,6 @@ export const StyledTitle = styled(BaseTitle)<IStyledTitleProps>`
 
   ${({ $fontSize }) => {
     switch ($fontSize) {
-      case 'one':
-        return css`
-          font-size: 1.55rem;
-          font-weight: 700;
-        `;
       case 'two':
         return css`
           font-size: 1.35rem;
@@ -42,6 +37,11 @@ export const StyledTitle = styled(BaseTitle)<IStyledTitleProps>`
         return css`
           font-size: 1rem;
           font-weight: 400;
+        `;
+      default:
+        return css`
+          font-size: 1.55rem;
+          font-weight: 700;
         `;
     }
   }}
