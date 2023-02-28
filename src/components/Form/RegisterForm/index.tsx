@@ -14,21 +14,25 @@ const RegisterForm = () => {
         labelText='Nome'
         error={errors.name?.message}
         register={register('name')}
+        type='text'
       />
       <Input
         labelText='Email'
         error={errors.email?.message}
         register={register('email')}
+        type='email'
       />
       <Input
         labelText='Senha'
         error={errors.password?.message}
         register={register('password')}
+        type='password'
       />
       <Input
         labelText='Confirmar senha'
         error={errors.confirmPassword?.message}
         register={register('confirmPassword')}
+        type='password'
       />
       <StyledButton $buttonSize='default' $buttonStyle='gray'>
         Cadastrar

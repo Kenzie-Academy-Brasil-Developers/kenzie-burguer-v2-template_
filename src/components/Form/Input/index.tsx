@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { StyledTextField } from '../../../styles/form';
 import { StyledParagraph } from '../../../styles/typography';
 
-interface IInputProps {
+interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
   labelText: string;
   error?: string | undefined;
   register: UseFormRegisterReturn;
