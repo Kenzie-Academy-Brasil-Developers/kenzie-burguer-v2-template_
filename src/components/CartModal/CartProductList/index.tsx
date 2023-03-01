@@ -6,7 +6,9 @@ import { StyledParagraph } from '../../../styles/typography';
 import { ShopPageContext } from '../../../Context/ShopPageContext';
 
 const CartProductList = () => {
-  const { cart } = useContext(ShopPageContext);
+  const { cart, setCart } = useContext(ShopPageContext);
+
+  const priceCurrent = cart.reduce((acc, cur) => acc + cur.price, 0);
 
   return (
     <StyledCartProductList>
@@ -15,16 +17,24 @@ const CartProductList = () => {
           <CartProductCard key={productCart.id} productCart={productCart} />
         ))}
       </ul>
-
       <div className='totalBox'>
         <StyledParagraph>
           <strong>Total</strong>
         </StyledParagraph>
         <StyledParagraph className='total'>
-          R$ {cart.reduce((acc, cur) => acc + cur.price, 0)}
+          {priceCurrent.toLocaleString('pt-br', {
+            style: 'currency',
+            currency: 'BRL',
+          })}
         </StyledParagraph>
       </div>
-      <StyledButton $buttonSize='default' $buttonStyle='gray'>
+      <StyledButton
+        $buttonSize='default'
+        $buttonStyle='gray'
+        onClick={() => {
+          setCart([]);
+        }}
+      >
         Remover todos
       </StyledButton>
     </StyledCartProductList>

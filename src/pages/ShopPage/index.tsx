@@ -8,6 +8,7 @@ import { ShopPageContext } from '../../Context/ShopPageContext';
 
 const ShopPage = () => {
   const { modalCart } = useContext(ShopPageContext);
+
   return (
     <StyledShopPage>
       {modalCart ? <CartModal /> : null}

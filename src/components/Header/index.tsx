@@ -1,5 +1,5 @@
 import { MdShoppingCart, MdLogout } from 'react-icons/md';
-
+import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import SearchForm from './SearchForm';
 import { StyledHeader } from './style';
@@ -8,7 +8,9 @@ import { StyledContainer } from '../../styles/grid';
 import { ShopPageContext } from '../../Context/ShopPageContext';
 
 const Header = () => {
-  const { modalCart, setModalCart } = useContext(ShopPageContext);
+  const { setModalCart } = useContext(ShopPageContext);
+
+  const navigate = useNavigate();
 
   return (
     <StyledHeader>
@@ -30,7 +32,14 @@ const Header = () => {
               >
                 <MdShoppingCart size={28} />
               </button>
-              <button type='button'>
+              <button
+                type='button'
+                onClick={() => {
+                  localStorage.removeItem('@TOKEN');
+                  localStorage.removeItem('@USER');
+                  navigate('/');
+                }}
+              >
                 <MdLogout size={28} />
               </button>
             </div>
