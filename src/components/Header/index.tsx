@@ -6,6 +6,7 @@ import { StyledHeader } from './style';
 import LogoKenzieBurguer from '../../assets/LogoKenzieBurguer.svg';
 import { StyledContainer } from '../../styles/grid';
 import { ShopPageContext } from '../../Context/ShopPageContext';
+import { toastify } from '../Toastify';
 
 const Header = () => {
   const { setModalCart } = useContext(ShopPageContext);
@@ -38,6 +39,7 @@ const Header = () => {
                   localStorage.removeItem('@TOKEN');
                   localStorage.removeItem('@USER');
                   navigate('/');
+                  toastify('Você se desconectou!', 'info');
                 }}
               >
                 <MdLogout size={28} />

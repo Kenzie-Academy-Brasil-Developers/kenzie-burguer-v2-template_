@@ -4,6 +4,7 @@ import { StyledCartProductList } from './style';
 import { StyledButton } from '../../../styles/button';
 import { StyledParagraph } from '../../../styles/typography';
 import { ShopPageContext } from '../../../Context/ShopPageContext';
+import { toastify } from '../../Toastify';
 
 const CartProductList = () => {
   const { cart, setCart } = useContext(ShopPageContext);
@@ -32,6 +33,7 @@ const CartProductList = () => {
         $buttonSize='default'
         $buttonStyle='gray'
         onClick={() => {
+          toastify('Todos os itens foram removidos do carrinho.', 'success');
           setCart([]);
         }}
       >

@@ -4,6 +4,7 @@ import { StyledCartProductCard } from './style';
 import { StyledTitle } from '../../../../styles/typography';
 import { IProducts } from '../../../../Context/ShopPageContext/types';
 import { ShopPageContext } from '../../../../Context/ShopPageContext';
+import { toastify } from '../../../Toastify';
 
 interface IProductCartProps {
   productCart: IProducts;
@@ -29,6 +30,7 @@ const CartProductCard = ({ productCart }: IProductCartProps) => {
               (product) => product.name !== productCart.name
             );
             setCart(newCart);
+            toastify(`${productCart.name} removido!`, 'success');
           }}
         >
           <MdDelete size={24} />

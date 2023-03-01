@@ -8,6 +8,7 @@ export interface IShopPageProvider {
   products: Omit<IProducts[], 'setProducts'>;
   cart: IProducts[];
   setCart: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  setProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
 }
 
 export interface IProducts {

@@ -4,6 +4,7 @@ import { StyledButton } from '../../../styles/button';
 import { StyledParagraph, StyledTitle } from '../../../styles/typography';
 import { IProducts } from '../../../Context/ShopPageContext/types';
 import { ShopPageContext } from '../../../Context/ShopPageContext';
+import { toastify } from '../../Toastify';
 
 interface IProductProps {
   product: IProducts;
@@ -33,7 +34,10 @@ const ProductCard = ({ product }: IProductProps) => {
         <StyledButton
           $buttonSize='medium'
           $buttonStyle='green'
-          onClick={() => setCart([...cart, product])}
+          onClick={() => {
+            setCart([...cart, product]);
+            toastify('Produto adicionado com sucesso!', 'success');
+          }}
         >
           Adicionar
         </StyledButton>

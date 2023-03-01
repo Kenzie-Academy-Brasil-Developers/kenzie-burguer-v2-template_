@@ -3,12 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import { createContext } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 import {
   IFormRegisterContext,
   IFormRegisterProviderProps,
   ISubmitRegisterForm,
 } from './types';
 import { api } from '../../API/api';
+import { toastify } from '../../components/Toastify';
 
 const registerSchema = yup.object({
   name: yup.string().required('Nome obrigatório!'),
@@ -54,9 +56,11 @@ export const FormRegisterProvider = ({
     try {
       await api.post('/users', sendData);
       navigate('/');
+      toastify('Cadastrado com sucesso', 'success');
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
+      if (axios.isAxiosError(error)) {
+        toastify(error.response?.data, 'error');
+      }
     }
   };
 

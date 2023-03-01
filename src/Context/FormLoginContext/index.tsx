@@ -3,6 +3,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import {
   IApiResponseLogin,
   IFormLoginContext,
@@ -10,6 +11,7 @@ import {
   ISubmitLoginForm,
 } from './types';
 import { api } from '../../API/api';
+import { toastify } from '../../components/Toastify';
 
 const loginSchema = yup.object({
   email: yup
@@ -40,10 +42,12 @@ export const FormLoginProvider = ({ children }: IFormLoginProviderProps) => {
 
       localStorage.setItem('@TOKEN', response.data.accessToken);
       localStorage.setItem('@USER', JSON.stringify(response.data.user));
+      toastify('Login realizado com sucesso!', 'success');
       navigate('/shop');
     } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
+      if (axios.isAxiosError(error)) {
+        toastify(error.response?.data, 'error');
+      }
     }
   };
 

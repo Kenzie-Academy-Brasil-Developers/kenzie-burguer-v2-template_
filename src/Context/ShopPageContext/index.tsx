@@ -1,6 +1,9 @@
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
+/* import { useNavigate } from 'react-router-dom'; */
+import axios from 'axios';
 import { IProducts, IShopPageProvider, IShopPageProviderProps } from './types';
 import { api } from '../../API/api';
+import { toastify } from '../../components/Toastify';
 
 export const ShopPageContext = createContext<IShopPageProvider>(
   {} as IShopPageProvider
@@ -11,28 +14,39 @@ export const ShopPageProvider = ({ children }: IShopPageProviderProps) => {
   const [products, setProducts] = useState<IProducts[]>([] as IProducts[]);
   const [cart, setCart] = useState<IProducts[]>([] as IProducts[]);
 
-  const getProducts = async () => {
-    const token = localStorage.getItem('@TOKEN');
-    try {
-      const response = await api.get<Omit<IProducts[], 'setProducts'>>(
-        '/products',
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+  /* const navigate = useNavigate(); */
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const token = localStorage.getItem('@TOKEN');
+      try {
+        const response = await api.get<Omit<IProducts[], 'setProducts'>>(
+          '/products',
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setProducts(response.data);
+      } catch (error) {
+        if (
+          axios.isAxiosError(error) &&
+          error.response?.data === 'jwt expired'
+        ) {
+          toastify(
+            'Seu login expirou! Entre novamente para continuar.',
+            'warning'
+          );
         }
-      );
-      setProducts(response.data);
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(error);
-    }
-  };
-  getProducts();
+      }
+    };
+    getProducts();
+  }, []);
 
   return (
     <ShopPageContext.Provider
-      value={{ modalCart, setModalCart, products, cart, setCart }}
+      value={{ modalCart, setModalCart, products, cart, setCart, setProducts }}
     >
       {children}
     </ShopPageContext.Provider>
