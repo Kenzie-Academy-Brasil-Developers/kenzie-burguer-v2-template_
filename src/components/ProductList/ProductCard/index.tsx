@@ -13,6 +13,19 @@ interface IProductProps {
 const ProductCard = ({ product }: IProductProps) => {
   const { setCart, cart } = useContext(ShopPageContext);
 
+  const verfiProductCart = (productVerif: IProducts) => {
+    const productRepeated = cart.find(
+      (productCart) => productCart === productVerif
+    );
+
+    if (productRepeated === undefined) {
+      setCart([...cart, product]);
+      toastify('Produto adicionado com sucesso!', 'success');
+    } else {
+      toastify(`${productVerif.name} já adicionado!`, 'error');
+    }
+  };
+
   return (
     <StyledProductCard key={product.id}>
       <div className='imageBox'>
@@ -35,8 +48,7 @@ const ProductCard = ({ product }: IProductProps) => {
           $buttonSize='medium'
           $buttonStyle='green'
           onClick={() => {
-            setCart([...cart, product]);
-            toastify('Produto adicionado com sucesso!', 'success');
+            verfiProductCart(product);
           }}
         >
           Adicionar
