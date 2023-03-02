@@ -21,6 +21,7 @@
     "react-router-dom": "^6.7.0",
     "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6",
+    "vercel": "^28.16.10",
     "yup": "^1.0.0"
   },
   "devDependencies": {

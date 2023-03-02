@@ -1,3 +1,5 @@
+import { FieldValues, SubmitHandler } from 'react-hook-form';
+
 export interface IShopPageProviderProps {
   children: React.ReactNode;
 }
@@ -9,6 +11,7 @@ export interface IShopPageProvider {
   cart: IProducts[];
   setCart: React.Dispatch<React.SetStateAction<IProducts[]>>;
   setProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
+  submitSearch: SubmitHandler<FieldValues>;
 }
 
 export interface IProducts {

@@ -20,7 +20,7 @@ const ProductCard = ({ product }: IProductProps) => {
 
     if (productRepeated === undefined) {
       setCart([...cart, product]);
-      toastify('Produto adicionado com sucesso!', 'success');
+      toastify(`${product.name} adicionado com sucesso!`, 'success');
     } else {
       toastify(`${productVerif.name} já adicionado!`, 'error');
     }
