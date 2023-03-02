@@ -21,7 +21,7 @@ const registerSchema = yup.object({
   password: yup
     .string()
     .required('Senha obrigatória!')
-    .matches(/.{6,}/, 'A senha deve conter no minimo 8 caracteres'),
+    .matches(/.{6,}/, 'A senha deve conter no minimo 6 caracteres'),
   confirmPassword: yup
     .string()
     .oneOf([yup.ref('password')], 'As senhas devem ser iguais')

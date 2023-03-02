@@ -46,3 +46,7 @@ export const StyledHeader = styled.header`
     }
   }
 `;
+
+export const StyledLogo = styled.div`
+  cursor: pointer;
+`;

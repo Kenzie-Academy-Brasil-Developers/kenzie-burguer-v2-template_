@@ -12,7 +12,7 @@ export const ShopPageContext = createContext<IShopPageProvider>(
 export const ShopPageProvider = ({ children }: IShopPageProviderProps) => {
   const [modalCart, setModalCart] = useState(false);
   const [products, setProducts] = useState<IProducts[]>([] as IProducts[]);
-  const [searchProducts, setSearchProducts] = useState<IProducts[]>(
+  const [copyAllProducts, setCopyAllProducts] = useState<IProducts[]>(
     [] as IProducts[]
   );
   const [cart, setCart] = useState<IProducts[]>([] as IProducts[]);
@@ -30,7 +30,7 @@ export const ShopPageProvider = ({ children }: IShopPageProviderProps) => {
           }
         );
         setProducts(response.data);
-        setSearchProducts(response.data);
+        setCopyAllProducts(response.data);
       } catch (error) {
         if (
           axios.isAxiosError(error) &&
@@ -46,15 +46,17 @@ export const ShopPageProvider = ({ children }: IShopPageProviderProps) => {
     getProducts();
   }, []);
 
-  const submitSearch: SubmitHandler<FieldValues> = (data) => {
-    if (data.search !== '') {
-      setProducts(
-        products.filter((product) =>
-          product.name.toLowerCase().includes(data.search.toLowerCase())
-        )
+  const submitSearch: SubmitHandler<FieldValues> = ({ search }) => {
+    if (search !== '') {
+      const filterProduct = products.filter(
+        (product) =>
+          product.name.toLowerCase().includes(search.toLowerCase()) ||
+          product.category.toLowerCase().includes(search.toLowerCase())
       );
+
+      setProducts(filterProduct);
     } else {
-      setProducts(searchProducts);
+      setProducts(copyAllProducts);
     }
   };
 
@@ -68,6 +70,7 @@ export const ShopPageProvider = ({ children }: IShopPageProviderProps) => {
         setCart,
         setProducts,
         submitSearch,
+        copyAllProducts,
       }}
     >
       {children}

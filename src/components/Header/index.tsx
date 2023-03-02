@@ -2,14 +2,15 @@ import { MdShoppingCart, MdLogout } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import SearchForm from './SearchForm';
-import { StyledHeader } from './style';
+import { StyledHeader, StyledLogo } from './style';
 import LogoKenzieBurguer from '../../assets/LogoKenzieBurguer.svg';
 import { StyledContainer } from '../../styles/grid';
 import { ShopPageContext } from '../../Context/ShopPageContext';
 import { toastify } from '../Toastify';
 
 const Header = () => {
-  const { setModalCart } = useContext(ShopPageContext);
+  const { setModalCart, copyAllProducts, setProducts } =
+    useContext(ShopPageContext);
 
   const navigate = useNavigate();
 
@@ -17,11 +18,13 @@ const Header = () => {
     <StyledHeader>
       <StyledContainer containerWidth={1300}>
         <div className='flexGrid'>
-          <img
-            src={LogoKenzieBurguer}
-            alt='Kenzie Burguer Logo'
-            className='logo'
-          />
+          <StyledLogo onClick={() => setProducts(copyAllProducts)}>
+            <img
+              src={LogoKenzieBurguer}
+              alt='Kenzie Burguer Logo'
+              className='logo'
+            />
+          </StyledLogo>
           <nav className='nav' role='navigation'>
             <SearchForm />
             <div className='buttons'>

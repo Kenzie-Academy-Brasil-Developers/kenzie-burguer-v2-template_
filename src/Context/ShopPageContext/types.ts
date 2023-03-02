@@ -12,6 +12,7 @@ export interface IShopPageProvider {
   setCart: React.Dispatch<React.SetStateAction<IProducts[]>>;
   setProducts: React.Dispatch<React.SetStateAction<IProducts[]>>;
   submitSearch: SubmitHandler<FieldValues>;
+  copyAllProducts: IProducts[];
 }
 
 export interface IProducts {

@@ -1,6 +1,6 @@
-import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { MdSearch } from 'react-icons/md';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { StyledSearchForm } from './style';
 import { StyledButton } from '../../../styles/button';
 import { ShopPageContext } from '../../../Context/ShopPageContext';
