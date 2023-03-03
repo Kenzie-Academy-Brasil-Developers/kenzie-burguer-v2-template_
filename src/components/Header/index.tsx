@@ -9,7 +9,7 @@ import { ShopPageContext } from '../../Context/ShopPageContext';
 import { toastify } from '../Toastify';
 
 const Header = () => {
-  const { setModalCart, copyAllProducts, setProducts } =
+  const { setModalCart, copyAllProducts, setProducts, cart } =
     useContext(ShopPageContext);
 
   const navigate = useNavigate();
@@ -29,11 +29,13 @@ const Header = () => {
             <SearchForm />
             <div className='buttons'>
               <button
+                className='cart'
                 type='button'
                 onClick={() => {
                   setModalCart(true);
                 }}
               >
+                <p>{cart.length}</p>
                 <MdShoppingCart size={28} />
               </button>
               <button

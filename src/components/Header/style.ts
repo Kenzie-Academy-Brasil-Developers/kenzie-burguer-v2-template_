@@ -32,6 +32,24 @@ export const StyledHeader = styled.header`
             color: ${({ theme }) => theme.colors.gray300};
           }
         }
+
+        .cart {
+          position: relative;
+
+          p {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: ${({ theme }) => theme.colors.primary};
+            color: ${({ theme }) => theme.colors.gray0};
+            min-width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 5px;
+          }
+        }
       }
     }
 
