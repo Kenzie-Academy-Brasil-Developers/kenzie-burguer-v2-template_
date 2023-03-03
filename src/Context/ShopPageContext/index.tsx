@@ -48,7 +48,7 @@ export const ShopPageProvider = ({ children }: IShopPageProviderProps) => {
 
   const submitSearch: SubmitHandler<FieldValues> = ({ search }) => {
     if (search !== '') {
-      const filterProduct = products.filter(
+      const filterProduct = copyAllProducts.filter(
         (product) =>
           product.name.toLowerCase().includes(search.toLowerCase()) ||
           product.category.toLowerCase().includes(search.toLowerCase())
